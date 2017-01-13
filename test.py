@@ -2,6 +2,7 @@
 
 from flaskapp import app as myapp
 import unittest
+import os
 import xmlrunner
 
 
@@ -18,8 +19,9 @@ class AppTestCase(unittest.TestCase):
 
 
 if __name__ == '__main__':
+    test_dir = os.environ.get('TEST_DIR', 'shippable/testresults')
     unittest.main(
         testRunner=xmlrunner.XMLTestRunner(
-            output='test-reports'
+            output=test_dir
         )
     )

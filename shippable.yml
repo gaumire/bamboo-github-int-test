@@ -1,0 +1,25 @@
+# Language setting
+language: python
+
+# Version number
+node_js:
+  - 2.7.13
+
+env:
+- TEST_DIR='shippable/testresults'
+
+build:
+  ci:
+    - pip install -r requirements.txt
+    - mkdir -p shippable/testresults
+    - python test.py
+
+  on_success:
+    - echo "Build ran successfully!"
+
+  on_failure:
+    - echo "Build failed!"
+    - pip freeze
+    - ls -lah
+
+  cache: true
